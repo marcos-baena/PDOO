@@ -35,7 +35,7 @@ public class Labyrinth {
     
     HACER EL CONSTRUCTOR |
                          V
-    */
+     */
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol) {
 
     }
@@ -48,20 +48,23 @@ public class Labyrinth {
         return playerSquare[exitRow][exitCol] != null;
     }
 
-    /*
-    
-    ARREGLAR EL TO STRING |
-                          V
-    */
-//    public String toString() {
-//
-//        String tablero="";
-//        //Corregir porque aquí lo primero que hace es imprimirme un salto de línea, tengo que saltarme la comprobación en la primera filaó
-//        for (int i = 0; i < nRows; ++i) {
-//            for (int j = 0; i < nCols; ++j) {
-//                j == COL ? tablero += "\n" : tablero += labyrinthSquare[i][j];
-//        return tablero;
-//    }
+    public String toString() {
+
+        String tablero = "";
+        //Corregir porque aquí lo primero que hace es imprimirme un salto de línea, tengo que saltarme la comprobación en la primera filaó
+
+        for (int i = 0; i < nRows; ++i) {
+            for (int j = 0; i < nCols; ++j) {
+                if (j == COL) {
+                    tablero += "\n" + labyrinthSquare[i][j];
+                } else {
+                    tablero += labyrinthSquare[i][j];
+                }
+            }
+        }
+        return tablero;
+    }
+
     public void addMonster(int row, int col, Monster monster) {
         if (posOK(row, col) && emptyPos(row, col)) {
             labyrinthSquare[row][col] = MONSTER_CHAR;
@@ -104,10 +107,7 @@ public class Labyrinth {
 
     private boolean canStepOn(int row, int col) {
         char tile = labyrinthSquare[row][col];
-//        posOK(row, col) ? 
-//        return (tile == EMPTY_POS || tile == MONSTER_POS || tile == EXIT_POS) 
-//        : return false;
-
+        
         if (posOK(row, col)) {
             return (tile == EMPTY_CHAR || tile == MONSTER_CHAR || tile == EXIT_CHAR);
         } else {
