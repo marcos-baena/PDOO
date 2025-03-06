@@ -23,9 +23,9 @@ public class Labyrinth {
     private int exitRow;
     private int exitCol;
 
-    private Monster[][] monsterSquare;
-    private Player[][] playerSquare;
-    private char[][] labyrinthSquare;
+    private Monster[][] monsterSquare;//CAMBIAR
+    private Player[][] playerSquare;//ESTOS
+    private char[][] labyrinthSquare;//NOMBRES
 
     /*
     MÉTODOS
