@@ -16,7 +16,7 @@ public class Labyrinth {
     private static final char COMBAT_CHAR = 'C';
     private static final char EXIT_CHAR = 'E';
     private static final int ROW = 0;
-    private static final int COL = 0;
+    private static final int COL = 1;
 
     private int nRows;
     private int nCols;
