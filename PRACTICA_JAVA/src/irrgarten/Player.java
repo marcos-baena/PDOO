@@ -25,10 +25,13 @@ public class Player {
     private int row;
     private int col;
     private int consecutiveHits = 0;
-    ArrayList<Weapon> weapons = new ArrayList<Weapon>();
-    ArrayList<Shield> shields = new ArrayList<Shield>();
+    private ArrayList<Weapon> weapons;
+    private ArrayList<Shield> shields;
 
     public Player(char number, float intelligence, float strength) {
+        weapons = new ArrayList<Weapon>();//Debería inicializarlos aquí o en la lista de atributos??
+        shields= new ArrayList<Shield>();
+        
         this.number = number;
         this.intelligence = intelligence;
         this.strength = strength;
@@ -84,10 +87,12 @@ public class Player {
     }
 
     public String toString() {
-        return "Estado actual del jugador " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
-                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
-                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col)
-                + "\n Golpes consecutivos: " + Integer.toString(consecutiveHits);
+//        return "Estado actual del jugador " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
+//                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
+//                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col)
+//                + "\n Golpes consecutivos: " + Integer.toString(consecutiveHits);
+          return "P["+name+", I: "+ Float.toString(intelligence) +", F: "+ Float.toString(strength) + "S: "+ 
+                  Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
     }
 
     private void receiveWeapon(Weapon w) {
@@ -131,7 +136,7 @@ public class Player {
     }
 
     private void resetHits() {
-        consecutiveHits = 0;
+        consecutiveHits = 0; //Cómo ponerlo sin número mágico??
     }
 
     private void gotWounded() {
