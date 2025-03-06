@@ -55,7 +55,7 @@ public class Labyrinth {
 
         for (int i = 0; i < nRows; ++i) {
             for (int j = 0; i < nCols; ++j) {
-                if (j == 0) {
+                if (j == ROW) {
                     tablero += "\n" + labyrinthSquare[i][j];
                 } else {
                     tablero += labyrinthSquare[i][j];
