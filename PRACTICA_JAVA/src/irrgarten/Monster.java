@@ -26,8 +26,8 @@ public class Monster {
         this.health = INITIAL_HEALTH;
 
         //Esto no lo pide, lo hago??
-        row = -1;
-        col = -1;
+//        row = -1;
+//        col = -1;
     }
 
     public boolean dead() {
@@ -49,9 +49,11 @@ public class Monster {
 
     @Override
     public String toString() {
-        return "Estado actual del monstruo " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
-                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
-                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col);
+//        return "Estado actual del monstruo " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
+//                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
+//                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col);
+          return "M["+name+", I: "+ Float.toString(intelligence) +", F: "+ Float.toString(strength) + "S: "+ 
+                  Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
 
     }
 
