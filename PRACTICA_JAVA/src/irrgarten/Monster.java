@@ -52,7 +52,7 @@ public class Monster {
 //        return "Estado actual del monstruo " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
 //                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
 //                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col);
-          return "M["+name+", I: "+ Float.toString(intelligence) +", F: "+ Float.toString(strength) + "S: "+ 
+          return "M["+name+", I: "+ Float.toString(intelligence) +", S: "+ Float.toString(strength) + "H: "+ 
                   Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
 
     }

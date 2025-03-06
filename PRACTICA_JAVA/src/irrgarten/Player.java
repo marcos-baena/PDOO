@@ -91,7 +91,7 @@ public class Player {
 //                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
 //                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col)
 //                + "\n Golpes consecutivos: " + Integer.toString(consecutiveHits);
-          return "P["+name+", I: "+ Float.toString(intelligence) +", F: "+ Float.toString(strength) + "S: "+ 
+          return "P["+name+", I: "+ Float.toString(intelligence) +", S: "+ Float.toString(strength) + "H: "+ 
                   Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
     }
 
