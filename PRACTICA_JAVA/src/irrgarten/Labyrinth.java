@@ -86,7 +86,7 @@ public class Labyrinth {
     }
 
     private boolean posOK(int row, int col) {
-        return (0 <= row && row <= nRows) && (0 <= col && col <= nCols);
+        return (0 <= row && row < nRows) && (0 <= col && col < nCols);
     }
 
     private boolean emptyPos(int row, int col) {
