@@ -23,9 +23,9 @@ public class Labyrinth {
     private int exitRow;
     private int exitCol;
 
-    private Monster[][] monsterSquare;//CAMBIAR
-    private Player[][] playerSquare;//ESTOS
-    private char[][] labyrinthSquare;//NOMBRES
+    private Monster[][] monsters;//CAMBIAR
+    private Player[][] players;//ESTOS
+    private char[][] labyrinth;//NOMBRES
 
     /*
     MÉTODOS
@@ -45,7 +45,7 @@ public class Labyrinth {
     }
 
     public boolean haveAWinner() {
-        return playerSquare[exitRow][exitCol] != null;
+        return players[exitRow][exitCol] != null;
     }
 
     public String toString() {
@@ -55,20 +55,17 @@ public class Labyrinth {
 
         for (int i = 0; i < nRows; ++i) {
             for (int j = 0; i < nCols; ++j) {
-                if (j == ROW) {
-                    tablero += "\n" + labyrinthSquare[i][j];
-                } else {
-                    tablero += labyrinthSquare[i][j];
-                }
+                    tablero += labyrinth[i][j];
             }
+            tablero += "\n";
         }
         return tablero;
     }
 
     public void addMonster(int row, int col, Monster monster) {
         if (posOK(row, col) && emptyPos(row, col)) {
-            labyrinthSquare[row][col] = MONSTER_CHAR;
-            monsterSquare[row][col] = monster;
+            labyrinth[row][col] = MONSTER_CHAR;
+            monsters[row][col] = monster;
         }
 
     }
@@ -90,43 +87,40 @@ public class Labyrinth {
     }
 
     private boolean emptyPos(int row, int col) {
-        return labyrinthSquare[row][col] == EMPTY_CHAR;
+        return labyrinth[row][col] == EMPTY_CHAR;
     }
 
     private boolean monsterPos(int row, int col) {
-        return labyrinthSquare[row][col] == MONSTER_CHAR;
+        return labyrinth[row][col] == MONSTER_CHAR;
     }
 
     private boolean exitPos(int row, int col) {
-        return labyrinthSquare[row][col] == EXIT_CHAR;
+        return labyrinth[row][col] == EXIT_CHAR;
     }
 
     private boolean combatPos(int row, int col) {
-        return labyrinthSquare[row][col] == COMBAT_CHAR;
+        return labyrinth[row][col] == COMBAT_CHAR;
     }
 
     private boolean canStepOn(int row, int col) {
-        char tile = labyrinthSquare[row][col];
-        
-        if (posOK(row, col)) {
-            return (tile == EMPTY_CHAR || tile == MONSTER_CHAR || tile == EXIT_CHAR);
-        } else {
-            return false;
-        }
+        return posOK(row, col) && (emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col));
     }
 
     private void updateOldPos(int row, int col) {
         if (posOK(row, col)) {
-            if (labyrinthSquare[row][col] == COMBAT_CHAR) {
-                labyrinthSquare[row][col] = MONSTER_CHAR;
+            if (labyrinth[row][col] == COMBAT_CHAR) {
+                labyrinth[row][col] = MONSTER_CHAR;
             } else {
-                labyrinthSquare[row][col] = EMPTY_CHAR;
+                labyrinth[row][col] = EMPTY_CHAR;
             }
         }
     }
 
     private int[] dir2Pos(int row, int col, Directions direction) {
-        int[] pos = {row, col};
+        int[] pos = new int[2];
+        
+        pos[ROW]=row;
+        pos[COL]=col;
 
         switch (direction) {
             case Directions.DOWN ->
@@ -145,9 +139,9 @@ public class Labyrinth {
         int[] randomPos = new int[2];
 
         do {
-            randomPos[0] = Dice.randomPos(nRows);
-            randomPos[1] = Dice.randomPos(nCols);
-        } while (labyrinthSquare[randomPos[0]][randomPos[1]] != EMPTY_CHAR);
+            randomPos[ROW] = Dice.randomPos(nRows);
+            randomPos[ROW] = Dice.randomPos(nCols);
+        } while (labyrinth[randomPos[0]][randomPos[1]] != EMPTY_CHAR);
 
         return randomPos;
     }
