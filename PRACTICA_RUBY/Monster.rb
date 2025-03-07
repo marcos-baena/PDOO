@@ -13,7 +13,7 @@ module Irrgarten
     end
     
     def dead
-      health==0
+      health == 0
     end
 
     def attack
@@ -23,6 +23,7 @@ module Irrgarten
     def set_pos(r, c)
       @row=r
       @col=c
+      nil
     end
 
     def to_s
@@ -31,6 +32,7 @@ module Irrgarten
 
     def gotWounded
       @health-=1
+      nil
     end
 
     def defend(received_attack)

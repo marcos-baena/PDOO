@@ -13,7 +13,7 @@ module Irrgarten
         @uses -= 1
         defense=@protection
       end
-      return defense
+      defense
     end
 
     def to_s

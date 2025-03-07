@@ -22,7 +22,7 @@ module Irrgarten
     def resurrect
       @shields.clear
       @weapons.clear
-      @health=INITIAL_HEALTH
+      @health=@@INITIAL_HEALTH
       reset_hits
     end
     
@@ -41,6 +41,7 @@ module Irrgarten
     def set_pos(r,c)
       @row=r
       @col=c
+      nil
     end
 
     def dead

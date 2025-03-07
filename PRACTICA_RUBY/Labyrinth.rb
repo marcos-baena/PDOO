@@ -22,7 +22,7 @@ module Irrgarten
     end
 
     def spread_players(players)
-    
+      #Recibiré información en la práctica3
     end
 
     def have_a_winner
@@ -33,12 +33,9 @@ module Irrgarten
       tablero=""
       for i in 0..(@n_rows-1)
         for j in 0..(@n_cols-1)
-          if j == @@ROW
-            tablero+="\n#{@labyrinth[i][j]}"
-          else
-            tablero+="#{@labyrinth[i][j]}"
-          end
+          tablero+="#{@labyrinth[i][j]}"
         end
+          tablero+="\n"
       end
       tablero
     end
@@ -48,6 +45,7 @@ module Irrgarten
         @labyrinth[row][col] = @@MONSTER_CHAR
         @monsters[row][col] = monster
       end
+      nil
     end
 
     def put_player
@@ -83,12 +81,7 @@ module Irrgarten
     end
 
     def can_step_on(row,col)
-      tile = @labyrinth[row][col]
-
-      if pos_OK(row, col)
-        return (tile == @@EMPTY_CHAR || tile == @@MONSTER_CHAR || tile == @@EXIT_CHAR)
-      end
-      false
+      pos_OK(row,col) && (empty_pos(row,col) || monster_pos(row,col) || exit_pos(row,col))
     end
 
     def update_old_pos(row,col)
@@ -99,10 +92,14 @@ module Irrgarten
           @labyrinth[row][col] = @@EMPTY_CHAR;
         end
       end
+      nil
     end
 
     def dir_2_pos(row,col,direction)
-      pos = [row, col]
+      pos = Array.new(2)
+      pos[@@ROW]=row
+      pos[@@COL]=col
+
         case direction 
         when Directions::DOWN 
           pos[0]-=1

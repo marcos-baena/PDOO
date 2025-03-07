@@ -12,7 +12,7 @@ module Irrgarten
         @uses -= 1
         damage=@power
       end
-      return damage
+      damage
     end
 
     def to_s

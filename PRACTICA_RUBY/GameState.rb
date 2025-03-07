@@ -11,22 +11,22 @@ module Irrgarten
       @log=lo
     end
     def labyrinth
-      return @labyrinth
+      @labyrinth
     end
     def players
-      return @players
+      @players
     end
     def monsters
-      return @monsters
+      @monsters
     end
     def current_player
-      return @current_player
+      @current_player
     end
     def  winner
-      return @winner
+      @winner
     end
     def log
-      return @log
+      @log
     end
   end
 end
