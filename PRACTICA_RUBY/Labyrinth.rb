@@ -116,12 +116,12 @@ module Irrgarten
     def random_empty_pos
       random_pos = Array.new(2)
 
-      random_pos[0] = Dice.random_pos(@n_rows)
-      random_pos[1] = Dice.random_pos(@n_cols)
+      random_pos[@@ROW] = Dice.random_pos(@n_rows)
+      random_pos[@@COL] = Dice.random_pos(@n_cols)
 
       while @labyrinth[random_pos[0]][random_pos[1]] != @@EMPTY_CHAR
-        random_pos[0] = Dice.random_pos(@n_rows)
-        random_pos[1] = Dice.random_pos(@n_cols)
+        random_pos[@@ROW] = Dice.random_pos(@n_rows)
+        random_pos[@@COL] = Dice.random_pos(@n_cols)
       end
       random_pos
     end
@@ -129,4 +129,6 @@ module Irrgarten
     def put_player_2D(old_row, old_col, row, col, player)
       #Me darán información en la práctica3
     end
+  end
+end
 
