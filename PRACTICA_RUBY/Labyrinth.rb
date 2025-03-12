@@ -102,13 +102,13 @@ module Irrgarten
 
         case direction 
         when Directions::DOWN 
-          pos[0]-=1
+          pos[@@ROW]-=1
         when Directions::UP 
-          pos[0]+=1
+          pos[@@ROW]+=1
         when Directions::LEFT 
-          pos[1]-=1
+          pos[@@COL]-=1
         when Directions::RIGHT 
-          pos[1]+=1
+          pos[@@COL]+=1
         end
       pos
     end
@@ -119,7 +119,7 @@ module Irrgarten
       random_pos[@@ROW] = Dice.random_pos(@n_rows)
       random_pos[@@COL] = Dice.random_pos(@n_cols)
 
-      while @labyrinth[random_pos[0]][random_pos[1]] != @@EMPTY_CHAR
+      while !empty_pos(randomPos[ROW],randomPos[COL])
         random_pos[@@ROW] = Dice.random_pos(@n_rows)
         random_pos[@@COL] = Dice.random_pos(@n_cols)
       end
@@ -130,5 +130,5 @@ module Irrgarten
       #Me darán información en la práctica3
     end
   end
-end
+end 
 

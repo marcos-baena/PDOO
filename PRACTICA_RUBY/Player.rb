@@ -67,7 +67,8 @@ module Irrgarten
     def to_s
       "P[#{@name}, I: #{@intelligence}, S: #{@strength}, H: #{@health}, Pos: (#{@row}, #{@col})]"
     end
-
+    private 
+    
     def receive_weapon
       #Me darán información en la práctica3
     end
@@ -77,11 +78,11 @@ module Irrgarten
     end
   
     def new_weapon
-      Weapon.new(Dice.random_strength, Dice.uses_left)
+      Weapon.new(Dice.weapon_power, Dice.uses_left)
     end
 
     def new_shield
-      Shield.new(Dice.random_strength, Dice.uses_left)
+      Shield.new(Dice.shield_power, Dice.uses_left)
     end
 
     def defensive_energy
@@ -94,22 +95,20 @@ module Irrgarten
 
     def reset_hits
       @consecutive_hits=0
+      nil
+    end
+
+    def got_wounded
+      @health -=1
+      nil
     end
 
     def sum_weapons
-      sum=0
-      for i in 0..(@weapons.size-1)
-        sum+=@weapons[i].attack
-      end
-      sum
+      @weapons.sum(&:attack)
     end
 
     def sum_shields
-      sum=0
-      for i in 0..(@shields.size-1)
-        sum+=@shields[i].defend
-      end
-      sum
+      @weapons.sum(&:defend)
     end
   end
 end
