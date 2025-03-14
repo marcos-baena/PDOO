@@ -5,8 +5,8 @@
 **Grado:** Doble Grado en Ingeniería Informática y Matemáticas  
 **Curso:** 2º  
 **Cuatrimestre:** 2º  
-**Universidad:** UGR
-**Autores:** Marcos Baena Solar
+**Universidad:** UGR  
+**Autor:** Marcos Baena Solar
 
 Este repositorio contiene el material de la asignatura de PDOO, incluyendo ejercicios prácticos.
 
