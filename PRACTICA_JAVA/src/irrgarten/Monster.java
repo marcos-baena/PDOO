@@ -57,7 +57,7 @@ public class Monster {
 
     }
 
-    public void getWounded() {
+    private void gotWounded() {
         --health;
     }
 }
