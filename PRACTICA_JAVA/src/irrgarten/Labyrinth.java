@@ -30,8 +30,7 @@ public class Labyrinth {
     /*
     MÉTODOS
      */
-    
-    /*
+ /*
     
     HACER EL CONSTRUCTOR |
                          V
@@ -55,7 +54,7 @@ public class Labyrinth {
 
         for (int i = 0; i < nRows; ++i) {
             for (int j = 0; i < nCols; ++j) {
-                    tablero += labyrinth[i][j];
+                tablero += labyrinth[i][j];
             }
             tablero += "\n";
         }
@@ -103,7 +102,7 @@ public class Labyrinth {
     }
 
     private boolean canStepOn(int row, int col) {
-        return posOK(row, col) && (emptyPos(row,col) || monsterPos(row,col) || exitPos(row,col));
+        return posOK(row, col) && (emptyPos(row, col) || monsterPos(row, col) || exitPos(row, col));
     }
 
     private void updateOldPos(int row, int col) {
@@ -118,19 +117,19 @@ public class Labyrinth {
 
     private int[] dir2Pos(int row, int col, Directions direction) {
         int[] pos = new int[2];
-        
-        pos[ROW]=row;
-        pos[COL]=col;
+
+        pos[ROW] = row;
+        pos[COL] = col;
 
         switch (direction) {
             case Directions.DOWN ->
-                pos[0]--;
+                pos[ROW]--;
             case Directions.UP ->
-                pos[0]++;
+                pos[ROW]++;
             case Directions.LEFT ->
-                pos[1]--;
+                pos[COL]--;
             case Directions.RIGHT ->
-                pos[1]++;
+                pos[COL]++;
         }
         return pos;
     }

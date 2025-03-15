@@ -122,7 +122,7 @@ public class Game {
     }
     
     private void logRounds(int rounds, int max){
-        log+="Se han producido "+Integer.toString(rounds)+" de "+Integer.toString(max)+" rondas.\n";
+        log+="Se han jugado "+Integer.toString(rounds)+" de "+Integer.toString(max)+" rondas.\n";
     }
 }
 

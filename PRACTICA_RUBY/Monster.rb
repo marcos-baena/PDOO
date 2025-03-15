@@ -30,13 +30,15 @@ module Irrgarten
       "M[#{@name}, I: #{@intelligence}, S: #{@strength}, H: #{@health}, Pos: (#{@row}, #{@col})]"
     end
 
+    def defend(received_attack)
+      #Recibiré información en la práctica3
+    end
+
+    private
+
     def gotWounded
       @health-=1
       nil
-    end
-
-    def defend(received_attack)
-      #Recibiré información en la práctica3
     end
   end
 end

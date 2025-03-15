@@ -26,17 +26,9 @@ module Irrgarten
       reset_hits
     end
     
-    def row
-      @row
-    end
-
-    def col
-      @col
-    end
-
-    def number
-      @number
-    end
+    attr_reader :row
+    attr_reader :col
+    attr_reader :number
 
     def set_pos(r,c)
       @row=r
@@ -67,6 +59,7 @@ module Irrgarten
     def to_s
       "P[#{@name}, I: #{@intelligence}, S: #{@strength}, H: #{@health}, Pos: (#{@row}, #{@col})]"
     end
+   
     private 
     
     def receive_weapon

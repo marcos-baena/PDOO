@@ -59,7 +59,9 @@ module Irrgarten
     def valid_moves
       #Me darán información en la práctica3
     end
-
+    
+    private
+    
     def pos_OK(row, col)
       (0 <= row && row < @n_rows) && (0 <= col && col < @n_cols)
     end
