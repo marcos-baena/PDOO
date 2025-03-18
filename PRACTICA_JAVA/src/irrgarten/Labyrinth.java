@@ -36,6 +36,9 @@ public class Labyrinth {
                          V
      */
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol) {
+        monsters=new Monster[nRows][nCols];
+        players=new Player[nRows][nCols];
+        labyrinth=new char[nRows][nCols];
 
     }
 
@@ -49,21 +52,20 @@ public class Labyrinth {
 
     public String toString() {
 
-        String tablero = "";
-        //Corregir porque aquí lo primero que hace es imprimirme un salto de línea, tengo que saltarme la comprobación en la primera filaó
-
+        StringBuilder tablero = new StringBuilder();
         for (int i = 0; i < nRows; ++i) {
-            for (int j = 0; i < nCols; ++j) {
-                tablero += labyrinth[i][j];
+            for (int j = 0; j < nCols; ++j) {
+                tablero.append(labyrinth[i][j]);
             }
-            tablero += "\n";
+            tablero.append("\n");
         }
-        return tablero;
+        return tablero.toString();
     }
 
     public void addMonster(int row, int col, Monster monster) {
         if (posOK(row, col) && emptyPos(row, col)) {
             labyrinth[row][col] = MONSTER_CHAR;
+            monster.setPos(row, col);
             monsters[row][col] = monster;
         }
 
@@ -123,9 +125,9 @@ public class Labyrinth {
 
         switch (direction) {
             case Directions.DOWN ->
-                pos[ROW]--;
-            case Directions.UP ->
                 pos[ROW]++;
+            case Directions.UP ->
+                pos[ROW]--;
             case Directions.LEFT ->
                 pos[COL]--;
             case Directions.RIGHT ->
@@ -139,7 +141,7 @@ public class Labyrinth {
 
         do {
             randomPos[ROW] = Dice.randomPos(nRows);
-            randomPos[ROW] = Dice.randomPos(nCols);
+            randomPos[COL] = Dice.randomPos(nCols);
         } while (labyrinth[randomPos[0]][randomPos[1]] != EMPTY_CHAR);
 
         return randomPos;

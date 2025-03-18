@@ -26,8 +26,8 @@ public class Monster {
         this.health = INITIAL_HEALTH;
 
         //Esto no lo pide, lo hago??
-//        row = -1;
-//        col = -1;
+        row = -1;
+        col = -1;
     }
 
     public boolean dead() {

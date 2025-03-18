@@ -38,6 +38,8 @@ public class Player {
         this.name = "Player #" + Character.toString(number);
         this.health = INITIAL_HEALTH;
         //inicializo row y col a -1?? Preguntar
+        row=-1;
+        col=-1;
     }
 
     public void resurrect() {

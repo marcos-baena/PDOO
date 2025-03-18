@@ -24,12 +24,16 @@ public class Game {
 
     */
     public Game(int nplayers){
+        log="";
+        
         //Inicializo players
         players = new ArrayList<Player>();
         
         //Creo los players y los meto en el contenedor players
         for(int i=0; i<nplayers; ++i)
             players.add(new Player((char) i, Dice.randomIntelligence(), Dice.randomStrength()));
+        
+        labyrinth= new Labyrinth(4,4,1,1);
         
         //Esparcir a los jugadores por el tablero
         labyrinth.spreadPlayers(players.toArray(Player[]::new));
@@ -45,7 +49,7 @@ public class Game {
         
         //Instancio un laberinto para poder inicializar el atributo labyrinth??
         
-        labyrinth= new Labyrinth(4,4,1,1); //Le pongo esos parametros al constructor un poco por la cara 
+         //Le pongo esos parametros al constructor un poco por la cara 
     }
     
     public boolean finished(){
@@ -57,6 +61,8 @@ public class Game {
     }
     
     public GameState getGameState(){
+        
+        //CAMBIAR
         GameState state=new GameState(labyrinth.toString(), players.toString(), 
                                       monsters.toString(), currentPlayerIndex,
                                       finished(), log);
@@ -71,14 +77,8 @@ public class Game {
     
     private void nextPlayer(){
         //Pasar al siguiente jugador
-        if(currentPlayerIndex==players.size()-1){
-            currentPlayerIndex=0;
+            currentPlayerIndex= (currentPlayerIndex + 1)% players.size();
             currentPlayer=players.get(currentPlayerIndex);
-        }
-        else {
-            ++currentPlayerIndex;
-            currentPlayer=players.get(currentPlayerIndex);
-        }
     }
     
     private Directions actualDirection(Directions preferredDirection){
@@ -98,7 +98,7 @@ public class Game {
     }
     
     private void logPlayerWon(){
-        log+="El jugador "+currentPlayer.toString()+" ha ganado el combate.\n";
+        log+="El jugador "+currentPlayer+" ha ganado el combate.\n";
     }
     
     private void logMonsterWon(){
@@ -106,19 +106,19 @@ public class Game {
     }
     
     private void logResurrected(){
-        log+="El jugador "+currentPlayer.toString()+" ha resucitado.\n";
+        log+="El jugador "+currentPlayer+" ha resucitado.\n";
     }
     
     private void logPlayerSkipTurn(){
-        log+="El jugador "+currentPlayer.toString()+" ha perdido el turno por estar muerto.\n";
+        log+="El jugador "+currentPlayer+" ha perdido el turno por estar muerto.\n";
     }
     
     private void logPlayerNoOrders(){
-        log+="El jugador "+currentPlayer.toString()+" no ha podido seguir las instrucciones del jugador humano.\n";
+        log+="El jugador "+currentPlayer+" no ha podido seguir las instrucciones del jugador humano.\n";
     }
     
     private void logNoMonster(){
-        log+="El jugador "+currentPlayer.toString()+" se ha movido a una celda vacía o no le ha sido posible moverse.\n";
+        log+="El jugador "+currentPlayer+" se ha movido a una celda vacía o no le ha sido posible moverse.\n";
     }
     
     private void logRounds(int rounds, int max){
