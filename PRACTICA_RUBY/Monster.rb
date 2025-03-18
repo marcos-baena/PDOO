@@ -13,7 +13,7 @@ module Irrgarten
     end
     
     def dead
-      health == 0
+      health <= 0 
     end
 
     def attack

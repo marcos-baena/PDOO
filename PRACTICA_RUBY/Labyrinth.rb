@@ -15,10 +15,11 @@ module Irrgarten
       
       @monsters = Array.new(@n_rows) {Array.new(@n_cols)}
       @players = Array.new(@n_rows) {Array.new(@n_cols)}
-      @labyrinth= Array.new(@n_rows) {Array.new(@n_cols)}
+      @labyrinth= Array.new(@n_rows) {Array.new(@n_cols, @@EMPTY_CHAR)}
       
       @exit_row=e_r
       @exit_col=e_c
+      @labyrinth[@exit_row][@exit_col] = @@EXIT_CHAR
     end
 
     def spread_players(players)
@@ -30,12 +31,12 @@ module Irrgarten
     end
 
     def to_s
-      tablero=""
-      for i in 0..(@n_rows-1)
-        for j in 0..(@n_cols-1)
-          tablero+="#{@labyrinth[i][j]}"
+      tablero=String.new
+      for i in 0...@n_rows
+        for j in 0...@n_cols
+          tablero << @labyrinth[i][j]
         end
-          tablero+="\n"
+          tablero << "\n"
       end
       tablero
     end
@@ -43,6 +44,7 @@ module Irrgarten
     def add_monster(row, col, monster)
       if pos_OK(row, col) && empty_pos(row, col)
         @labyrinth[row][col] = @@MONSTER_CHAR
+        monster.set_pos(row, col)
         @monsters[row][col] = monster
       end
       nil
@@ -104,9 +106,9 @@ module Irrgarten
 
         case direction 
         when Directions::DOWN 
-          pos[@@ROW]-=1
-        when Directions::UP 
           pos[@@ROW]+=1
+        when Directions::UP 
+          pos[@@ROW]-=1
         when Directions::LEFT 
           pos[@@COL]-=1
         when Directions::RIGHT 
@@ -121,7 +123,7 @@ module Irrgarten
       random_pos[@@ROW] = Dice.random_pos(@n_rows)
       random_pos[@@COL] = Dice.random_pos(@n_cols)
 
-      while !empty_pos(randomPos[ROW],randomPos[COL])
+      while !empty_pos(random_pos[@@ROW],random_pos[@@COL])
         random_pos[@@ROW] = Dice.random_pos(@n_rows)
         random_pos[@@COL] = Dice.random_pos(@n_cols)
       end

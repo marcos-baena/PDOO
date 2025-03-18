@@ -37,7 +37,7 @@ module Irrgarten
     end
 
     def dead
-      @health == 0
+      @health <= 0
     end
 
     def move(d,v)
@@ -101,12 +101,7 @@ module Irrgarten
     end
 
     def sum_shields
-      @weapons.sum(&:defend)
+      @shileds.sum(&:defend)
     end
   end
 end
-
-
-
-
-
