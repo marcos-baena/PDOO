@@ -5,6 +5,7 @@
 package irrgarten;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -30,16 +31,16 @@ public class Player {
 
     public Player(char number, float intelligence, float strength) {
         weapons = new ArrayList<Weapon>();//Debería inicializarlos aquí o en la lista de atributos??
-        shields= new ArrayList<Shield>();
-        
+        shields = new ArrayList<Shield>();
+
         this.number = number;
         this.intelligence = intelligence;
         this.strength = strength;
         this.name = "Player #" + Character.toString(number);
         this.health = INITIAL_HEALTH;
         //inicializo row y col a -1?? Preguntar
-        row=-1;
-        col=-1;
+        row = -1;
+        col = -1;
     }
 
     public void resurrect() {
@@ -71,7 +72,18 @@ public class Player {
     }
 
     public Directions move(Directions direction, Directions[] validMoves) {
-        throw new UnsupportedOperationException();
+        ArrayList<Directions> validMovesList = new ArrayList<>(Arrays.asList(validMoves));
+        int size = validMovesList.size();
+        boolean contained = validMovesList.contains(direction);
+        Directions firstElement;
+
+        if (size > 0 && (!contained)) {
+            firstElement = validMovesList.get(0);
+        } else {
+            firstElement = direction;
+        }
+
+        return firstElement;
     }
 
     public float attack() {
@@ -85,7 +97,20 @@ public class Player {
     }
 
     public void receiveReward() {
-        throw new UnsupportedOperationException();
+        int wReward = Dice.weaponsReward();
+        int sReward = Dice.shieldsReward();
+        Weapon wnew;
+        Shield snew;
+
+        for (int i = 0; i < wReward; ++i) {
+            wnew = newWeapon();
+            receiveWeapon(wnew);
+        }
+        for (int i = 0; i < sReward; ++i) {
+            snew = newShield();
+            receiveShield(snew);
+        }
+        health += Dice.healthReward();
     }
 
     public String toString() {
@@ -93,16 +118,32 @@ public class Player {
 //                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
 //                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col)
 //                + "\n Golpes consecutivos: " + Integer.toString(consecutiveHits);
-          return "P["+name+", I: "+ Float.toString(intelligence) +", S: "+ Float.toString(strength) + "H: "+ 
-                  Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
+        return "P[" + name + ", I: " + Float.toString(intelligence) + ", S: " + Float.toString(strength) + "H: "
+                + Float.toString(health) + "Pos: (" + Integer.toString(row) + ", " + Integer.toString(col) + ")]";
     }
 
     private void receiveWeapon(Weapon w) {
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < weapons.size(); ++i) {
+            if (weapons.get(i).discard()) {
+                weapons.remove(i);
+            }
+        }
+
+        if (weapons.size() < MAX_WEAPONS) {
+            weapons.add(w);
+        }
     }
 
     private void receiveShield(Shield s) {
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < shields.size(); ++i) {
+            if (shields.get(i).discard()) {
+                shields.remove(i);
+            }
+        }
+
+        if (shields.size() < MAX_WEAPONS) {
+            shields.add(s);
+        }
     }
 
     private Weapon newWeapon() {
@@ -134,7 +175,24 @@ public class Player {
     }
 
     private boolean manageHit(float receivedAttack) {
-        throw new UnsupportedOperationException();
+        float defense = defensiveEnergy();
+        boolean lose;
+
+        if (defense < receivedAttack) {
+            gotWounded();
+            incConsecutiveHits();
+        } else {
+            resetHits();
+        }
+
+        if (consecutiveHits == HITS2LOSE || (dead())) {
+            resetHits();
+            lose = true;
+        } else {
+            lose = false;
+        }
+        return lose;
+
     }
 
     private void resetHits() {

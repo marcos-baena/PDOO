@@ -39,7 +39,17 @@ public class Monster {
     }
 
     public boolean defend(float receivedAttack) {
-        throw new UnsupportedOperationException();
+        boolean isDead = dead();
+
+        if (!isDead) {
+            float defensiveEnergy = Dice.intensity(intelligence);
+
+            if (defensiveEnergy < receivedAttack) {
+                gotWounded();
+                isDead = dead();
+            }
+        }
+        return isDead;
     }
 
     public void setPos(int row, int col) {
@@ -52,8 +62,8 @@ public class Monster {
 //        return "Estado actual del monstruo " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
 //                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
 //                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col);
-          return "M["+name+", I: "+ Float.toString(intelligence) +", S: "+ Float.toString(strength) + "H: "+ 
-                  Float.toString(health) + "Pos: ("+Integer.toString(row)+", "+Integer.toString(col)+")]";
+        return "M[" + name + ", I: " + Float.toString(intelligence) + ", S: " + Float.toString(strength) + "H: "
+                + Float.toString(health) + "Pos: (" + Integer.toString(row) + ", " + Integer.toString(col) + ")]";
 
     }
 
