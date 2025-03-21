@@ -12,15 +12,15 @@ module Irrgarten
         @uses -= 1
         damage=@power
       end
-      return damage
+      damage
     end
 
     def to_s
-      return "W["+@power.to_s+", "+@uses.to_s+"]"
+      "W[#{@power}, #{@uses}]"
     end
 
     def discard
-      return Dice.discard_element(@uses)
+      Dice.discard_element(@uses)
     end
   end
 end
