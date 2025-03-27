@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Irrgarten::Dice - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-discard_element">::discard_element</a>
+    <li ><a href="#method-c-health_reward">::health_reward</a>
+    <li ><a href="#method-c-intensity">::intensity</a>
+    <li ><a href="#method-c-random_intelligence">::random_intelligence</a>
+    <li ><a href="#method-c-random_pos">::random_pos</a>
+    <li ><a href="#method-c-random_strength">::random_strength</a>
+    <li ><a href="#method-c-resurrect_player">::resurrect_player</a>
+    <li ><a href="#method-c-shield_power">::shield_power</a>
+    <li ><a href="#method-c-shields_reward">::shields_reward</a>
+    <li ><a href="#method-c-uses_left">::uses_left</a>
+    <li ><a href="#method-c-weapon_power">::weapon_power</a>
+    <li ><a href="#method-c-weapons_reward">::weapons_reward</a>
+    <li ><a href="#method-c-who_starts">::who_starts</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Irrgarten::Dice">
+  <h1 id="class-Irrgarten::Dice" class="class">
+    class Irrgarten::Dice
+  </h1>
+
+  <section class="description">
+    
+<p>Provides random number generation and probability calculations for game mechanics</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-discard_element" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">discard_element</span><span
+              class="method-args">(uses_left)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines if a weapon/shield should be discarded @param <a href="Dice.html#method-c-uses_left"><code>uses_left</code></a> [Integer] remaining uses of the element @return [Boolean] true if element should be discarded</p>
+
+          <div class="method-source-code" id="discard_element-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">discard_element</span>(<span class="ruby-identifier">uses_left</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">uses_left</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">@@MAX_USES</span>
+    <span class="ruby-identifier">result</span>=<span class="ruby-keyword">false</span>;
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">uses_left</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">result</span>=<span class="ruby-keyword">true</span>;
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">result</span>= <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span> <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">@@MAX_USES</span><span class="ruby-operator">-</span><span class="ruby-identifier">uses_left</span>).<span class="ruby-identifier">to_f</span><span class="ruby-operator">/</span><span class="ruby-identifier">@@MAX_USES</span> 
+  <span class="ruby-keyword">end</span>                                                 
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-health_reward" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">health_reward</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines health points as reward @return [Integer] random number between 0 and HEALTH_REWARD</p>
+
+          <div class="method-source-code" id="health_reward-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">health_reward</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@HEALTH_REWARD</span><span class="ruby-value">+1</span>) <span class="ruby-comment">#[0, HEALTH_REWARD]</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-intensity" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">intensity</span><span
+              class="method-args">(competence)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines intensity of an action based on competence @param competence [Float] maximum possible intensity @return [Float] random intensity between 0 and competence</p>
+
+          <div class="method-source-code" id="intensity-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">intensity</span>(<span class="ruby-identifier">competence</span>)
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">competence</span>) <span class="ruby-comment">#[0.0, competence)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-random_intelligence" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">random_intelligence</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Generates random intelligence value @return [Float] random value between 0 and MAX_INTELLIGENCE</p>
+
+          <div class="method-source-code" id="random_intelligence-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">random_intelligence</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@MAX_INTELLIGENCE</span>) <span class="ruby-comment">#[0, MAX_INTELLIGENCE)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-random_pos" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">random_pos</span><span
+              class="method-args">(max)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Generates a random position within given maximum @param max [Integer] maximum position value @return [Integer] random position between 0 and max-1</p>
+
+          <div class="method-source-code" id="random_pos-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">random_pos</span>(<span class="ruby-identifier">max</span>)
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">max</span>) <span class="ruby-comment">#[0, max)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-random_strength" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">random_strength</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Generates random strength value @return [Float] random value between 0 and MAX_STRENGTH</p>
+
+          <div class="method-source-code" id="random_strength-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">random_strength</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@MAX_STRENGTH</span>) <span class="ruby-comment">#[0, MAX_STRENGTH)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-resurrect_player" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">resurrect_player</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines if a player should be resurrected @return [Boolean] true if player should be resurrected (based on RESURRECT_PROB)</p>
+
+          <div class="method-source-code" id="resurrect_player-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">resurrect_player</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">@@RESURRECT_PROB</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-shield_power" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">shield_power</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines shield defense power @return [Integer] random number between 0 and MAX_SHIELD-1</p>
+
+          <div class="method-source-code" id="shield_power-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">shield_power</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@MAX_SHIELD</span>)  <span class="ruby-comment">#[0, MAX_SHIELD)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-shields_reward" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">shields_reward</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines number of shields as reward @return [Integer] random number between 0 and SHIELDS_REWARD</p>
+
+          <div class="method-source-code" id="shields_reward-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">shields_reward</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@SHIELDS_REWARD</span><span class="ruby-value">+1</span>)  <span class="ruby-comment">#[0, SHIELDS_REWARD]</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-uses_left" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">uses_left</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines remaining uses for weapons/shields @return [Integer] random number between 0 and MAX_USES</p>
+
+          <div class="method-source-code" id="uses_left-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">uses_left</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@MAX_USES</span><span class="ruby-value">+1</span>) <span class="ruby-comment">#[0, MAX_USES]</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-weapon_power" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">weapon_power</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines weapon attack power @return [Integer] random number between 0 and MAX_ATTACK-1</p>
+
+          <div class="method-source-code" id="weapon_power-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">weapon_power</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@MAX_ATTACK</span>)  <span class="ruby-comment">#[0, MAX_ATTACK)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-weapons_reward" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">weapons_reward</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines number of weapons as reward @return [Integer] random number between 0 and WEAPONS_REWARD</p>
+
+          <div class="method-source-code" id="weapons_reward-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">weapons_reward</span>
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">@@WEAPONS_REWARD</span><span class="ruby-value">+1</span>) <span class="ruby-comment">#[0, WEAPONS_REWARD]</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-who_starts" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">who_starts</span><span
+              class="method-args">(nplayers)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Determines which player starts the game @param nplayers [Integer] number of players @return [Integer] random player index between 0 and nplayers-1</p>
+
+          <div class="method-source-code" id="who_starts-source">
+            <pre><span class="ruby-comment"># File Dice.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">who_starts</span>(<span class="ruby-identifier">nplayers</span>)
+  <span class="ruby-ivar">@generator</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-identifier">nplayers</span>) <span class="ruby-comment">#[0, nplayers)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

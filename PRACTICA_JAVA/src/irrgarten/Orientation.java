@@ -1,8 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package irrgarten;
 
-public enum Orientation {VERTICAL, HORIZONTAL}
-
+/**
+ * Represents possible orientations in the Irrgarten game.
+ * Used to specify the direction of walls and other elements.
+ * 
+ * @author marcosbslinux
+ * @version 1.0
+ */
+public enum Orientation {
+    /** Vertical orientation */
+    VERTICAL,
+    
+    /** Horizontal orientation */
+    HORIZONTAL
+}

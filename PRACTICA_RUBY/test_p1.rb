@@ -27,7 +27,6 @@ class TestP1
 
     # --- Creación de instancias de las clases de la práctica ---
     puts "\nCreando instancias de clases..."
-    dice       = Irrgarten::Dice.new
     game_state = Irrgarten::GameState.new("Laberinto1", ["Jugador1", "Jugador2"], ["Monstruo1"], "Jugador1", nil, [])
     shield     = Irrgarten::Shield.new(5, 3)
     weapon     = Irrgarten::Weapon.new(7, 4)
@@ -59,86 +58,86 @@ class TestP1
 
     # --- Prueba de la clase Dice 100 veces ---
     puts "\nPrueba de métodos de Dice (100 iteraciones cada uno):"
-    test_dice_methods(dice)
+    test_dice_methods
 
     puts "\n=== Pruebas completadas ==="
   end
 
   # Método auxiliar para probar los métodos de Dice 100 veces y mostrar estadísticas básicas.
-  def self.test_dice_methods(dice)
+  def self.test_dice_methods
     num_trials = 100
 
     # random_pos(max)
     pos_distribution = Hash.new(0)
-    num_trials.times { pos_distribution[dice.random_pos(10)] += 1 }
+    num_trials.times { pos_distribution[Irrgarten::Dice.random_pos(10)] += 1 }
     puts "\nDistribución de random_pos(10):"
     pos_distribution.sort.each { |valor, veces| puts "Valor #{valor}: #{veces} veces" }
 
     # who_starts(nplayers)
     start_distribution = Hash.new(0)
-    num_trials.times { start_distribution[dice.who_starts(4)] += 1 }
+    num_trials.times { start_distribution[Irrgarten::Dice.who_starts(4)] += 1 }
     puts "\nDistribución de who_starts(4):"
     start_distribution.sort.each { |jugador, veces| puts "Jugador #{jugador}: #{veces} veces" }
 
     # random_intelligence
-    intel_values = Array.new(num_trials) { dice.random_intelligence }
+    intel_values = Array.new(num_trials) { Irrgarten::Dice.random_intelligence }
     avg_intel = intel_values.sum / num_trials.to_f
     puts "\nValor medio de random_intelligence: #{avg_intel}"
 
     # random_strength
-    strength_values = Array.new(num_trials) { dice.random_strength }
+    strength_values = Array.new(num_trials) { Irrgarten::Dice.random_strength }
     avg_strength = strength_values.sum / num_trials.to_f
     puts "\nValor medio de random_strength: #{avg_strength}"
 
     # resurrect_player (cuenta cuántas veces devuelve true)
     resurrect_count = 0
-    num_trials.times { resurrect_count += 1 if dice.resurrect_player }
+    num_trials.times { resurrect_count += 1 if Irrgarten::Dice.resurrect_player }
     puts "\nresurrect_player ha devuelto true #{resurrect_count} de #{num_trials} veces"
 
     # weapons_reward
     weapons_rewards = Hash.new(0)
-    num_trials.times { weapons_rewards[dice.weapons_reward] += 1 }
+    num_trials.times { weapons_rewards[Irrgarten::Dice.weapons_reward] += 1 }
     puts "\nDistribución de weapons_reward:"
     weapons_rewards.sort.each { |reward, veces| puts "Reward #{reward}: #{veces} veces" }
 
     # shields_reward
     shields_rewards = Hash.new(0)
-    num_trials.times { shields_rewards[dice.shields_reward] += 1 }
+    num_trials.times { shields_rewards[Irrgarten::Dice.shields_reward] += 1 }
     puts "\nDistribución de shields_reward:"
     shields_rewards.sort.each { |reward, veces| puts "Reward #{reward}: #{veces} veces" }
 
     # health_reward
     health_rewards = Hash.new(0)
-    num_trials.times { health_rewards[dice.health_reward] += 1 }
+    num_trials.times { health_rewards[Irrgarten::Dice.health_reward] += 1 }
     puts "\nDistribución de health_reward:"
     health_rewards.sort.each { |reward, veces| puts "Reward #{reward}: #{veces} veces" }
 
     # weapon_power
     weapon_powers = Hash.new(0)
-    num_trials.times { weapon_powers[dice.weapon_power] += 1 }
+    num_trials.times { weapon_powers[Irrgarten::Dice.weapon_power] += 1 }
     puts "\nDistribución de weapon_power:"
     weapon_powers.sort.each { |power, veces| puts "Power #{power}: #{veces} veces" }
 
     # shield_power
     shield_powers = Hash.new(0)
-    num_trials.times { shield_powers[dice.shield_power] += 1 }
+    num_trials.times { shield_powers[Irrgarten::Dice.shield_power] += 1 }
     puts "\nDistribución de shield_power:"
     shield_powers.sort.each { |power, veces| puts "Power #{power}: #{veces} veces" }
 
     # uses_left
     uses_distribution = Hash.new(0)
-    num_trials.times { uses_distribution[dice.uses_left] += 1 }
+    num_trials.times { uses_distribution[Irrgarten::Dice.uses_left] += 1 }
     puts "\nDistribución de uses_left:"
     uses_distribution.sort.each { |uses, veces| puts "Uses #{uses}: #{veces} veces" }
 
     # intensity(competence): Usamos competencia = 5
-    intensity_values = Array.new(num_trials) { dice.intensity(5) }
+    intensity_values = Array.new(num_trials) { Irrgarten::Dice.intensity(5) }
     avg_intensity = intensity_values.sum / num_trials.to_f
     puts "\nValor medio de intensity(5): #{avg_intensity}"
 
     # discard_element(uses_left): Probamos con un valor fijo de uses_left, por ejemplo 3.
     discard_results = { true => 0, false => 0 }
-    num_trials.times { discard_results[dice.discard_element(3)] += 1 }
+    num_trials.times { discard_results[Irrgarten::Dice.discard_element(3)] += 1 }
     puts "\nResultados de discard_element(3):"
     discard_results.each { |resultado, veces| puts "#{resultado}: #{veces} veces" }
   end

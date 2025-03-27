@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Irrgarten::GameState - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link">Object
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-new">::new</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Irrgarten::GameState">
+  <h1 id="class-Irrgarten::GameState" class="class">
+    class Irrgarten::GameState
+  </h1>
+
+  <section class="description">
+    
+<p>Represents the complete state of the <a href="../Irrgarten.html"><code>Irrgarten</code></a> game Contains all game elements and current state information</p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      <div id="attribute-i-current_player" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">current_player</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] <a href="GameState.html#attribute-i-current_player"><code>current_player</code></a></p>
+
+<pre>@return [Integer] index of current player</pre>
+        </div>
+      </div>
+      <div id="attribute-i-labyrinth" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">labyrinth</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] labyrinth</p>
+
+<pre>@return [Labyrinth] the game&#39;s labyrinth/map</pre>
+        </div>
+      </div>
+      <div id="attribute-i-log" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">log</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] log</p>
+
+<pre>@return [String] game log/messages</pre>
+        </div>
+      </div>
+      <div id="attribute-i-monsters" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">monsters</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] monsters</p>
+
+<pre>@return [Array&lt;Monster&gt;] array of all monsters</pre>
+        </div>
+      </div>
+      <div id="attribute-i-players" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">players</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] players</p>
+
+<pre>@return [Array&lt;Player&gt;] array of all players</pre>
+        </div>
+      </div>
+      <div id="attribute-i-winner" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">winner</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        <p>@!attribute [r] winner</p>
+
+<pre>@return [Boolean] true if there is a winner</pre>
+        </div>
+      </div>
+    </section>
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-header">
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(l, p, m, c, w, lo)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+        </div>
+
+        <div class="method-description">
+          <p>Initializes a new game state with all game elements @param l [Labyrinth] the game’s labyrinth/map @param p [Array&lt;Player&gt;] array of all players @param m [Array&lt;Monster&gt;] array of all monsters @param c [Integer] index of current player @param w [Boolean] true if there is a winner @param lo [String] game log/messages</p>
+
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File GameState.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">l</span>, <span class="ruby-identifier">p</span>, <span class="ruby-identifier">m</span>, <span class="ruby-identifier">c</span>, <span class="ruby-identifier">w</span>, <span class="ruby-identifier">lo</span>)
+  <span class="ruby-ivar">@labyrinth</span>=<span class="ruby-identifier">l</span> 
+  <span class="ruby-ivar">@players</span> =<span class="ruby-identifier">p</span>
+  <span class="ruby-ivar">@monsters</span>=<span class="ruby-identifier">m</span>
+  <span class="ruby-ivar">@current_player</span>= <span class="ruby-identifier">c</span>
+  <span class="ruby-ivar">@winner</span>=<span class="ruby-identifier">w</span>
+  <span class="ruby-ivar">@log</span>=<span class="ruby-identifier">lo</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.5.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
