@@ -22,13 +22,13 @@ module Irrgarten
     # Checks if monster is dead
     # @return [Boolean] true if health is 0 or less
     def dead
-      health <= 0 
+      @health <= 0 
     end
 
     # Calculates attack strength using dice roll
     # @return [Integer] attack intensity based on strength
     def attack
-      Dice.intensity(strength)
+      Dice.intensity(@strength)
     end
 
     # Sets monster's position on the labyrinth
@@ -68,7 +68,7 @@ module Irrgarten
 
     # Reduces monster's health when wounded
     # @return [nil]
-    def gotWounded
+    def got_wounded
       @health-=1
       nil
     end

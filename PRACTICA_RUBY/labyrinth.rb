@@ -35,7 +35,14 @@ module Irrgarten
     # Spreads players across the labyrinth (implementation pending)
     # @param players [Array<Player>] array of players to place
     def spread_players(players)
-      #Recibiré información en la práctica3
+      pos = Array.new
+      p
+
+      for i in 0...players.size
+        pos = random_empty_pos
+        p = players[i]
+        put_player_2D(-1,-1, pos[@@ROW], pos[@@COL], p)
+      end
     end
 
     # Checks if there is a winner at the exit position
@@ -50,7 +57,7 @@ module Irrgarten
       tablero=String.new
       for i in 0...@n_rows
         for j in 0...@n_cols
-          tablero << @labyrinth[i][j]
+          tablero << @labyrinth[i][j] << " "
         end
           tablero << "\n"
       end

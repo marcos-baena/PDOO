@@ -1,4 +1,9 @@
 #encoding: utf-8
+
+require_relative 'dice'
+require_relative 'weapon'
+require_relative 'shield'
+
 module Irrgarten
   # Represents a player character in the Irrgarten game
   # Manages player state including position, health, weapons, shields and combat stats
@@ -24,8 +29,8 @@ module Irrgarten
       @row=-1
       @col=-1
       @name="Player ##{@number}"
-      @shields=Array.new
-      @weapons=Array.new
+      @shields= []
+      @weapons= []
       @consecutive_hits=0
     end
 
@@ -133,9 +138,9 @@ module Irrgarten
     # @param w [Weapon] weapon to receive
     # @return [void]
     def receive_weapon(w)
-      for i in 0...@weapons.size
-        if @weapons[i].discard
-          @weapons.delete_at(i)
+      for weapon in @weapons
+        if weapon.discard
+          @weapons.delete(weapon)
         end
       end
 
@@ -150,13 +155,13 @@ module Irrgarten
     # @param s [Shield] shield to receive
     # @return [void]
     def receive_shield(s)
-      for i in 0...@shields.size
-        if @shields[i].discard
-          @shields.delete_at(i)
+      for shield in @shields
+        if shield.discard
+          @shields.delete(shield)
         end
-      end
-      
-      if weapons.size < @@MAX_SHIELDS
+      end 
+
+      if @shields.size < @@MAX_SHIELDS
         @shields << s
       end
       nil
@@ -197,7 +202,7 @@ module Irrgarten
         reset_hits
       end
 
-      if consecutive_hits == @@HITS2LOSE || dead
+      if @consecutive_hits == @@HITS2LOSE || dead
         reset_hits
         lose = true
       else
@@ -235,7 +240,7 @@ module Irrgarten
     # Calculates total defense power from all shields
     # @return [Integer] sum of shield defenses
     def sum_shields
-      @shields.sum(&:defend)
+      @shields.sum(&:protect)
     end
   end
 end

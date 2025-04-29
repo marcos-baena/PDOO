@@ -1,3 +1,13 @@
+# encoding: utf-8
+
+require_relative 'dice'
+require_relative 'player'
+require_relative 'monster'
+require_relative 'labyrinth'
+require_relative 'game_state'
+require_relative 'game_character'
+require_relative 'orientation'
+
 module Irrgarten
   # Main game controller class that manages game state and flow
   class Game
@@ -7,20 +17,20 @@ module Irrgarten
     # Initializes a new game with specified number of players
     # @param nplayers [Integer] number of players in the game
     def initialize(nplayers)
-      @current_player_index=Dice.who_starts(nplayers)
+      @current_player_index= Dice.who_starts(nplayers)
 
-      @players = Array.new(nplayers) 
+      @players = [] 
+      @monsters= []
 
       #Inicializa con players
       for i in 0...nplayers
-        @players << Player.new(i.chr, Dice.random_intelligence, Dice.random_strength)
+        @players << Player.new(('0'.ord + i).chr, Dice.random_intelligence, Dice.random_strength)
       end
-      @current_player=players[@current_player_index]
-      @labyrinth=Labyrinth.new
+      @current_player=@players[@current_player_index]
+      @labyrinth=Labyrinth.new(10, 10, 3, 3)
+      configure_labyrinth
       @labyrinth.spread_players(@players)
-
-      current_player
-      @monsters=Array.new
+      
       @log = ""
     end
 
@@ -66,7 +76,7 @@ module Irrgarten
 
     # Gets current game state
     # @return [GameState] object containing game state information
-    def get_game_state
+    def game_state
       players_s = String.new
       monsters_s = String.new
 
@@ -79,14 +89,32 @@ module Irrgarten
         monsters_s << @monsters[i].to_s
         monsters_s << ", "
       end 
-      Gamestate.new(@labyrinth.to_s, players_s, monsters_s, current_player_index, finished, log)
+      GameState.new(@labyrinth.to_s, players_s, monsters_s, @current_player_index, @finished, @log)
     end
     
     private
 
     # Configures labyrinth (implementation pending)
     def configure_labyrinth
-      #Aún no sé cómo se hace
+      #Set labyrinth dimensions and number of monsters
+      rows = 10;
+      cols = 10;
+
+      #Add outer walls to the labyrinth
+      @labyrinth.add_block(Orientation::HORIZONTAL, 0, 0, cols)
+      @labyrinth.add_block(Orientation::HORIZONTAL, rows-1, 0, cols)
+      @labyrinth.add_block(Orientation::VERTICAL, 1, 0, rows)
+      @labyrinth.add_block(Orientation::VERTICAL, 1, cols-1, rows)
+
+      # Create and add monsters to the labyrinth
+      monster = Monster.new("1", 40, 40)
+      @labyrinth.add_monster(2, 6, monster)
+
+      monster2 = Monster.new("2", 40, 40)
+      @labyrinth.add_monster(7, 4, monster2)
+
+      @monsters << monster
+      @monsters << monster2
     end
 
     # Advances to next player in turn order
@@ -116,7 +144,7 @@ module Irrgarten
     def combat(monster)      
       rounds = 0
       winner = GameCharacter::PLAYER
-      player_attack = @curent_player.attack
+      player_attack = @current_player.attack
       lose = monster.defend(player_attack)
 
       while !lose && rounds < @@MAX_ROUNDS

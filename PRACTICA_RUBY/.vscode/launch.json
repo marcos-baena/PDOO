@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "rdbg",                      // adaptador rdbg
+      "name": "Debug main_game.rb (rdbg)",
+      "request": "launch",
+      "script": "${workspaceFolder}/main_game.rb",
+      "useTerminal": true,                 // ← fuerza un TTY para STDIN/STDOUT
+      "args": []                           // si necesitas pasar arguments
+      // (no pongas "console", y la "cwd" la toma por defecto)
+    }
+  ]
+}
