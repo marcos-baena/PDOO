@@ -61,9 +61,23 @@ public class Labyrinth {
      * @param exitCol Column position of the exit
      */
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol) {
+        // Initialize the monsters, players, and labyrinth arrays with the given dimensions
         monsters = new Monster[nRows][nCols];
         players = new Player[nRows][nCols];
         labyrinth = new char[nRows][nCols];
+        
+        for (int i=0; i<nRows; ++i)
+            for (int j=0; j<nCols; ++j)
+                labyrinth[i][j] = EMPTY_CHAR;
+
+        // Set the exit column and row positions
+        this.exitCol = exitCol;
+        this.exitRow = exitRow;
+        labyrinth[exitRow][exitCol] = EXIT_CHAR;
+
+        // Set the number of rows and columns in the labyrinth
+        this.nRows = nRows;
+        this.nCols = nCols;
 
     }
 
@@ -71,13 +85,13 @@ public class Labyrinth {
      * Randomly distributes players across empty positions in the labyrinth
      * @param players Array of players to place in the labyrinth
      */
-    public void spreadPlayers(Player[] players) {
+    public void spreadPlayers(ArrayList<Player> players) {
         int[] pos;
         Player p;
 
-        for (int i = 0; i < players.length; ++i) {
+        for (int i = 0; i < players.size(); ++i) {
             pos = randomEmptyPos();
-            p = players[i];
+            p = players.get(i);
             putPlayer2D(-1, -1, pos[ROW], pos[COL], p);
         }
     }
@@ -100,6 +114,7 @@ public class Labyrinth {
         for (int i = 0; i < nRows; ++i) {
             for (int j = 0; j < nCols; ++j) {
                 tablero.append(labyrinth[i][j]);
+                tablero.append(" ");
             }
             tablero.append("\n");
         }
@@ -174,7 +189,7 @@ public class Labyrinth {
      * @param col Current column position
      * @return Array of valid Directions
      */
-    public Directions[] validMoves(int row, int col) {
+    public ArrayList<Directions> validMoves(int row, int col) {
         ArrayList<Directions> output = new ArrayList<Directions>();
 
         if (canStepOn(row + 1, col)) {
@@ -190,7 +205,7 @@ public class Labyrinth {
             output.add(Directions.LEFT);
         }
 
-        return output.toArray(Directions[]::new);
+        return output;
     }
 
     /**

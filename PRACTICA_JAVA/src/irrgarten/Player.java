@@ -133,14 +133,13 @@ public class Player {
      * @param validMoves Array of valid directions
      * @return Selected movement direction
      */
-    public Directions move(Directions direction, Directions[] validMoves) {
-        ArrayList<Directions> validMovesList = new ArrayList<>(Arrays.asList(validMoves));
-        int size = validMovesList.size();
-        boolean contained = validMovesList.contains(direction);
+    public Directions move(Directions direction, ArrayList<Directions> validMoves) {
+        int size = validMoves.size();
+        boolean contained = validMoves.contains(direction);
         Directions firstElement;
 
         if (size > 0 && (!contained)) {
-            firstElement = validMovesList.get(0);
+            firstElement = validMoves.get(0);
         } else {
             firstElement = direction;
         }
@@ -192,12 +191,8 @@ public class Player {
      * @return String showing player's attributes and position
      */
     public String toString() {
-//        return "Estado actual del jugador " + name + ": \n\tInteligencia: " + Float.toString(intelligence)
-//                + "\n\tFuerza: " + Float.toString(strength) + "\n\tSalud: " + Float.toString(health)
-//                + "\n\tPosición:\n\t\tFila: " + Integer.toString(row) + "\n\t\tColumna: " + Integer.toString(col)
-//                + "\n Golpes consecutivos: " + Integer.toString(consecutiveHits);
-        return "P[" + name + ", I: " + Float.toString(intelligence) + ", S: " + Float.toString(strength) + "H: "
-                + Float.toString(health) + "Pos: (" + Integer.toString(row) + ", " + Integer.toString(col) + ")]";
+        return "P[" + name + ", I:" + Float.toString(intelligence) + ", S: " + Float.toString(strength) + ", H:"
+                + Float.toString(health) + ", Pos:(" + Integer.toString(row) + ", " + Integer.toString(col) + ")]";
     }
 
     /**
@@ -205,7 +200,7 @@ public class Player {
      * @param w Weapon to add
      */
     private void receiveWeapon(Weapon w) {
-        for (int i = 0; i < weapons.size(); ++i) {
+        for (int i = 0; i < weapons.size(); ++i) { //Esto es un poco raro que no me de error, lo mismo en receiveShields
             if (weapons.get(i).discard()) {
                 weapons.remove(i);
             }

@@ -43,13 +43,15 @@ public class Game {
 
         //Creo los players y los meto en el contenedor players
         for (int i = 0; i < nplayers; ++i) {
-            players.add(new Player((char) i, Dice.randomIntelligence(), Dice.randomStrength()));
+            char c = (char) ('0' + i);
+            players.add(new Player(c, Dice.randomIntelligence(), Dice.randomStrength()));
         }
+        
+        labyrinth = new Labyrinth(10, 10, 3, 3);
 
-        labyrinth = new Labyrinth(4, 4, 1, 1);
 
         //Esparcir a los jugadores por el tablero
-        labyrinth.spreadPlayers(players.toArray(Player[]::new));
+        labyrinth.spreadPlayers(players);
 
         //Elijo quién empieza la partida
         currentPlayerIndex = Dice.whoStarts(nplayers);
@@ -59,9 +61,9 @@ public class Game {
 
         //Inicializo monsters
         monsters = new ArrayList<Monster>();
+        
+        configureLabyrinth();
 
-        //Instancio un laberinto para poder inicializar el atributo labyrinth??
-        //Le pongo esos parametros al constructor un poco por la cara 
     }
 
     /**
@@ -122,7 +124,7 @@ public class Game {
         for(int i=0; i<players.size(); ++i)
         {
             players_toS.append(players.get(i).toString());
-            players_toS.append(", ");
+            players_toS.append("\n");
         }
         
         StringBuilder monsters_toS = new StringBuilder();
@@ -142,9 +144,26 @@ public class Game {
      * Configures the labyrinth by placing monsters in their positions
      */
     private void configureLabyrinth() {
-        for (int i = 0; i < monsters.size(); ++i) {
-//            labyrinth.addMonster(monsters.get(i).setPos(Dice.randomPos(labyrinth.), i), monsters.get(i)); Tengo que hacerlo pero no se como
-        }
+        // Set labyrinth dimensions and number of monsters
+         final int rows = 10;
+         final int cols = 10;
+
+         // Add outer walls to the labyrinth
+         labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, cols);
+         labyrinth.addBlock(Orientation.HORIZONTAL, rows-1, 0, cols);
+         labyrinth.addBlock(Orientation.VERTICAL, 1, 0, rows);
+         labyrinth.addBlock(Orientation.VERTICAL, 1, cols-1, rows);
+
+         // Create and add monsters to the labyrinth
+         Monster monster = new Monster("1", 200, 200);
+         labyrinth.addMonster(2, 6, monster);
+
+         Monster monster2 = new Monster("1", Dice.randomIntelligence(), Dice.randomStrength());
+         labyrinth.addMonster(7, 4, monster2);
+         
+         monsters.add(monster);
+         monsters.add(monster2);
+        
     }
 
     /**
@@ -165,7 +184,7 @@ public class Game {
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
 
-        Directions[] validMoves = labyrinth.validMoves(currentRow, currentCol);
+        ArrayList<Directions> validMoves = labyrinth.validMoves(currentRow, currentCol);
 
         Directions output = currentPlayer.move(preferredDirection, validMoves);
 
