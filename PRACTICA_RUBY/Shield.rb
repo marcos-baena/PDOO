@@ -13,15 +13,15 @@ module Irrgarten
         @uses -= 1
         defense=@protection
       end
-      return defense
+      defense
     end
 
     def to_s
-      return "S["+@protection.to_s+", "+@uses.to_s+"]"
+      "S[#{@protection}, #{@uses}]"
     end
 
     def discard
-      return Dice.discard_element(@uses)
+      Dice.discard_element(@uses)
     end
   end
 end

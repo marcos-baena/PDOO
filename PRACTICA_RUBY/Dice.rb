@@ -15,40 +15,40 @@ module Irrgarten
     @generator=Random.new
 
     def self.random_pos(max)
-      return @generator.rand(max) #[0, max)
+      @generator.rand(max) #[0, max)
     end
     def self.who_starts(nplayers)
-      return @generator.rand(nplayers) #[0, nplayers)
+      @generator.rand(nplayers) #[0, nplayers)
     end
     def self.random_intelligence
-      return @generator.rand(MAX_INTELLIGENCE) #[0, MAX_INTELLIGENCE)
+      @generator.rand(MAX_INTELLIGENCE) #[0, MAX_INTELLIGENCE)
     end
     def self.random_strength
-      return @generator.rand(MAX_STRENGTH) #[0, MAX_STRENGTH)
+      @generator.rand(MAX_STRENGTH) #[0, MAX_STRENGTH)
     end
     def self.resurrect_player
-      return @generator.rand < RESURRECT_PROB
+      @generator.rand < RESURRECT_PROB
     end
     def self.weapons_reward
-      return @generator.rand(WEAPONS_REWARD+1) #[0, WEAPONS_REWARD]
+      @generator.rand(WEAPONS_REWARD+1) #[0, WEAPONS_REWARD]
     end
     def self.shields_reward
-      return @generator.rand(SHIELDS_REWARD+1)  #[0, SHIELDS_REWARD]
+      @generator.rand(SHIELDS_REWARD+1)  #[0, SHIELDS_REWARD]
     end
     def self.health_reward
-      return @generator.rand(HEALTH_REWARD+1) #[0, HEALTH_REWARD]
+      @generator.rand(HEALTH_REWARD+1) #[0, HEALTH_REWARD]
     end
     def self.weapon_power
-      return @generator.rand(MAX_ATTACK)  #[0, MAX_ATTACK)
+      @generator.rand(MAX_ATTACK)  #[0, MAX_ATTACK)
     end
     def self.shield_power
-      return @generator.rand(MAX_SHIELD)  #[0, MAX_SHIELD)
+      @generator.rand(MAX_SHIELD)  #[0, MAX_SHIELD)
     end
     def self.uses_left
-      return @generator.rand(MAX_USES+1) #[0, MAX_USES]
+      @generator.rand(MAX_USES+1) #[0, MAX_USES]
     end
     def self.intensity(competence)
-      return @generator.rand(competence) #[0.0, competence)
+      @generator.rand(competence) #[0.0, competence)
     end
     def self.discard_element(uses_left)
       if uses_left == MAX_USES
@@ -58,7 +58,7 @@ module Irrgarten
       else
         result= @generator.rand < (MAX_USES-uses_left).to_f/MAX_USES 
       end                                                 
-      return result
+      result
     end
   end
 end

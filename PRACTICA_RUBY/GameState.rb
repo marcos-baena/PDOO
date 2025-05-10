@@ -10,23 +10,12 @@ module Irrgarten
       @winner=w
       @log=lo
     end
-    def labyrinth
-      return @labyrinth
-    end
-    def players
-      return @players
-    end
-    def monsters
-      return @monsters
-    end
-    def current_player
-      return @current_player
-    end
-    def  winner
-      return @winner
-    end
-    def log
-      return @log
-    end
+    attr_reader :labyrinth
+    attr_reader :players
+    attr_reader :monsters
+    attr_reader :current_player
+    attr_reader :winner
+    attr_reader :log
+
   end
 end
